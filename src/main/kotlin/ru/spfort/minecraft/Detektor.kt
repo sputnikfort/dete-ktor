@@ -3,15 +3,17 @@ package ru.spfort.minecraft
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import org.bukkit.plugin.java.JavaPlugin
+import net.kyori.adventure.text.minimessage.MiniMessage
 import ru.spfort.web.configureRouting
 import ru.spfort.web.configureTemplating
+import java.util.*
 
-class Detektor : JavaPlugin() {
+object DetektorAPI {
+    fun getClickableLink(messageText: String, hostname: String, playerUUID: UUID) =
+        MiniMessage.miniMessage().deserialize("<open_url:$hostname/$playerUUID>")
 
-
-    override fun onEnable() {
-        embeddedServer(Netty, port = 3280, host = "0.0.0.0", module = Application::module)
+    fun start(port: Int = 8080, host: String = "0.0.0.0") {
+        embeddedServer(Netty, port = port, host = host, module = Application::module)
             .start(wait = true)
     }
 }
