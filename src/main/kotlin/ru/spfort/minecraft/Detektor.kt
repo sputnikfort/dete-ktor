@@ -8,7 +8,7 @@ import ru.spfort.web.configureRouting
 import ru.spfort.web.configureTemplating
 import java.util.*
 
-object DetektorAPI {
+object Detektor {
     fun getClickableLink(messageText: String, hostname: String, playerUUID: UUID) =
         MiniMessage.miniMessage().deserialize("<open_url:$hostname/$playerUUID>")
 
